@@ -43,7 +43,10 @@
 (function(){
   window.Doc = Backbone.Model.extend({
     urlRoot: API_URL,
-    urlFilter: API_FILTER
+    urlFilter: API_FILTER,
+    defaults: {
+      display: true
+    }
   });
 
   window.Docs = Backbone.Collection.extend({
@@ -54,6 +57,7 @@
     maybeFetch: function(options){
       if(this._fetched){
         options.success = options.success();
+        this.trigger("change");
         return;
       }
       var self = this,
@@ -75,14 +79,28 @@
     },
 
     search: function(letters) {
-      if(letters === "") return this;
       var regex = "";
-      $.each(letters, function(l) { regex = regex + ".*" + letters[l];});
+      if( letters !== "" ) {
+        $.each(letters, function(l) { regex = regex + ".*" + letters[l];});
+      }
       var pattern = new RegExp(regex, "i");
+
+      $.each(this.models, function(i) {
+        this.attributes.display = true;
+        if (!pattern.test(this.get("item"))) {
+          this.attributes.display = false;
+        }
+      });
+
+      this.trigger("change");
+    },
+
+    displayed: function() {
       return _(this.filter(function(data) {
-        return pattern.test(data.get("item"));
-    }));
+        return data.attributes.display === true;
+      }));
     }
+
   });
 
   window.DetailApp = Backbone.View.extend({
@@ -119,19 +137,14 @@
     initialize: function(){
       _.bindAll(this, 'addOne', 'addAll');
 
-      this.collection.bind('add', this.addOne);
       this.collection.bind('reset', this.addAll, this);
+      this.collection.bind('change', this.addAll, this);
       this.views = [];
-    },
-
-    search: function(letters){
-      this.views = [];
-      this.collection.search(letters).each(this.addOne);
     },
 
     addAll: function(){
       this.views = [];
-      this.collection.each(this.addOne);
+      this.collection.displayed().each(this.addOne);
     },
 
     addOne: function(item){
@@ -140,13 +153,20 @@
       });
       $(this.el).prepend(view.render().el);
       this.views.push(view);
-      view.bind('all', this.rethrow, this);
-    },
-
-    rethrow: function(){
-      this.trigger.apply(this, arguments);
     }
 
+  });
+
+  window.ListCountView = Backbone.View.extend({
+    initialize: function(){
+      _.bindAll(this, 'render');
+      this.collection.bind('change', this.render, this);
+    },
+
+    render: function(){
+      $(this.el).html(this.collection.displayed()._wrapped.length + " Item(s)");
+      return this;
+    }
   });
 
   window.ListApp = Backbone.View.extend({
@@ -157,11 +177,7 @@
     search: function(letter){
       $('#items').html('');
       var letters = this.$('#search').val();
-      this.list.search(letters);
-    },
-
-    rethrow: function(){
-      this.trigger.apply(this, arguments);
+      this.collection.search(letters);
     },
 
     render: function(){
@@ -170,8 +186,14 @@
         collection: this.collection,
         el: this.$('#items')
       });
-      this.list.addAll();
-      this.list.bind('all', this.rethrow, this);
+
+      this.list_count = new ListCountView({
+        collection: this.collection,
+        el: this.$('#count')
+      });
+
+      this.collection.trigger("change");
+      return this;
     }
   });
 
