@@ -13,13 +13,6 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE,NOINDEX,NOFOLLOW" />{% endblock %}
-
-    <script type="text/javascript">
-      STATIC_URL = "{{ STATIC_URL }}";
-      APIKEY = "{{ APIKEY }}";
-      APIKEY_HEADER = "{{ APIKEY_HEADER }}";
-    </script>
 
     {% block js %}
       <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/jquery-1.7.1.min.js"></script>
@@ -51,7 +44,7 @@
       <div class="topbar-inner">
         <div class="container-fluid">
           {% block header %}
-            <a class="brand" href="{% url 'main:index' %}">{{ APP_NAME_LONG }}</a>
+            <a class="brand" href="{% url 'main:index' %}">{{ APP_NAME }}</a>
           {% endblock %}
         </div>
       </div>

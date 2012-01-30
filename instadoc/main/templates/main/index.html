@@ -1,9 +1,42 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load url from future %}
+{% load include_raw %}
 
 {% block extrahead %}
+  <script type="text/javascript">
+    API_URL = "{% url 'api_dispatch_list' api_name='v1' resource_name='documentation' %}";
+    API_FILTER = "category__id={{ selected_category.id }}";
+  </script>
+  <script type="text/javascript" src="{{ STATIC_URL }}/js/instadoc.js"></script>
+
+  <script type="text/html" id="list_item_template">
+    {% include_raw "main/list_item.mustache" %}
+  </script>
+
+  <script type="text/html" id="list_template">
+    {% include_raw "main/list.mustache" %}
+  </script>
+
+  <script type="text/html" id="detail_template">
+    {% include_raw "main/detail.mustache" %}
+  </script>
+
+{% endblock %}
+
+{% block header %}
+  {{ block.super }}
+  <ul>
+    {% for category in categories %}
+      <li {% if category == selected_category %} class="active" {% endif %}>
+        <a href="{% url 'main:category' pk=category.pk %}">{{ category.item|title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
 {% endblock %}
 
 {% block main %}
-  hello world
+  <div class="row">
+    <div id='sidebar' class="well span4"></div>
+    <div id='detail' class="span10"></div>
+  </div>
 {% endblock %}
