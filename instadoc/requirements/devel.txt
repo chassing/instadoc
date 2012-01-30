@@ -1,0 +1,16 @@
+# deployment
+Fabric
+Jinja2
+
+
+# test runner
+nose
+django-nose
+
+
+# test plugins
+nosegrowl2
+
+
+# python mocker
+#fudge

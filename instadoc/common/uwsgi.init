@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+# Startup script for uWSGI
+#
+# chkconfig: 2345 99 36
+# description: python application server
+# processname: uwsgi
+
+UWSGI_BIN="{{ virtualenv_root }}/bin/uwsgi"
+UWSGI_INI="{{ uwsgi_root }}/uwsgi.ini"
+UWSGI_PARAMS=""
+PIDFILE=`grep "pidfile" $UWSGI_INI | cut -f2 -d"=" | tr -d " "`
+UWSGI_USER="{{ linux_user }}"
+
+start(){
+  cd `dirname $UWSGI_INI`
+  su -c "$UWSGI_BIN --ini $UWSGI_INI $UWSGI_PARAMS" $UWSGI_USER
+}
+
+stop(){
+  killall -9 $UWSGI_BIN
+  rm -f $PIDFILE
+}
+
+case "$1" in
+  start)
+    start
+  ;;
+  stop)
+    stop
+  ;;  
+  restart)
+    stop
+    start
+  ;;
+  *)
+    echo "Usage: $0 <start|stop|restart>"
+  ;;
+esac
