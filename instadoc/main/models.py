@@ -9,7 +9,7 @@ class Documentation(models.Model):
   category = models.ForeignKey("Category", related_name="docs")
 
   class Meta:
-    ordering = ('item',)
+    ordering = ('-item',)
 
   def __unicode__(self):
     return self.item

@@ -32,16 +32,27 @@ FILES = [
 
 def importing():
   for f in FILES:
-    content = json.load(urlopen(URL + f['file']))
+    try:
+      content = json.load(open(f['file']))
+    except:
+      content = json.load(urlopen(URL + f['file']))
 
     c, created = Category.objects.get_or_create(item=f['name'])
     for item in content:
+      if not item['title']:
+        continue
+
       print "processing %s" % item["title"]
       d, created = Documentation.objects.get_or_create(item=item['title'], category=c)
       d.category = c
       d.url = item['url']
       d.html = ""
-      for html in item['sectionHTMLs']:
+
+      html = 'html'
+      if 'sectionHTMLs' in item:
+        html = 'sectionHTMLs'
+
+      for html in item[html]:
         d.html += html
 
       d.save()
