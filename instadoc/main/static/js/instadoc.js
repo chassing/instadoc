@@ -76,7 +76,9 @@
 
     search: function(letters) {
       if(letters === "") return this;
-      var pattern = new RegExp(letters,"gi");
+      var regex = "";
+      $.each(letters, function(l) { regex = regex + ".*" + letters[l];});
+      var pattern = new RegExp(regex, "i");
       return _(this.filter(function(data) {
         return pattern.test(data.get("item"));
     }));
