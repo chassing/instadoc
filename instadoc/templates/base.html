@@ -6,8 +6,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>
       {% block title %}
-        {{ APP_NAME_LONG }}
-        {% if pending_notifications %} ({{ pending_notifications }}) {% endif %}
+        {{ APP_NAME }}
       {% endblock %}
     </title>
     <meta name="keywords" content="" />
@@ -16,12 +15,6 @@
 
     {% block js %}
       <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/jquery-1.7.1.min.js"></script>
-      <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/bootstrap-dropdown.js"></script>
-      <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/bootstrap-twipsy.js"></script>
-      <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/bootstrap-popover.js"></script>
-      <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/bootstrap-modal.js"></script>
-      <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/bootstrap-modal.js"></script>
-
       <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/underscore-min.js"></script>
       <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/backbone-min.js"></script>
       <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/backbone-tastypie.js"></script>
