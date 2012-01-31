@@ -214,7 +214,7 @@ LOGGING = {
 #
 APP_NAME = "Instadoc"
 APP_NAME_LONG = "Insta Doc"
-APP_VERSION = "1.0"
+APP_VERSION = "0.1"
 COPYRIGHT_YEAR = "2012"
 
 ADMIN_USERS = ["chris", ]
