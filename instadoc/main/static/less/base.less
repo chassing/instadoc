@@ -9,33 +9,6 @@ body {
   padding-top: 60px;
 }
 
-iframe {
-  border: 0px;
-}
-
-.center (@width) {
-  width: @width;
-  position: absolute;
-  left: 50%;
-  margin-left: -(@width / 2);
-}
-
-.centered {
-  .center(340px);
-}
-
-.centered input[type="text"], .centered input[type="password"] {
-  width: 328px;
-}
-
-.input_size_fix input[type="text"], .input_size_fix input[type="password"] {
-  width: 300px;
-}
-
-.form-stacked {
-  padding-left: 0px;
-}
-
 // fix bootstrap
 table {
   th, td {
@@ -51,13 +24,6 @@ table {
   }
 }
 
-.btn {
-  &.tiny {
-    padding: 4px 6px 4px;
-    font-size: @basefont - 2px;
-  }
-}
-
 .topbar div > ul,
 .nav {
   .active > a {
@@ -65,100 +31,17 @@ table {
   }
 }
 
-.list-ct {
-  //background-color:
-  ul {
-    //background-color: #F0F0F0;
-    margin-left: 0px;
-    margin-bottom: 0px;
-    li {
-      margin: 5px;
-    }
+ul {
+  list-style: none;
+  .permalink {
+    cursor: pointer;
   }
 }
 
-.topbar input:focus, .topbar input.focused {
-  background-color: #F0F0F0;
+.small-text {
+  font-size: 8px;
 }
 
-
-/* action bar*/
-.action-bar {
-  position: fixed;
-  z-index: 1000;
-}
-
-.action-bar-left {
-  height: 305px;
-  width: 6px;
-  left: 0px;
-  top: 50%;
-  margin-top: -153px;
-}
-
-.action-bar-right {
-  height: 305px;
-  width: 6px;
-  left: 98%;
-  right: 0px;
-  top: 50%;
-  margin-top: -153px;
-}
-
-.action-bar a {
-  display: block;
-  overflow: hidden;
-  text-indent: -8793px;
-  height: 41px;
-  width: 41px;
-  border:none;
-  margin-bottom: 3px;
-}
-
-.action-bar-left a{
-  margin-left: -25px;
-}
-
-.action-bar-right a {
-  margin-left: 15px;
-}
-
-#tooltip {
-  position: absolute;
-  background: #000;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  padding: 4px 8px 4px 8px;
-  color: #fff;
-  font-size: 11px;
-  font-weight: bold;
-  display: none;
-  white-space: nowrap;
-  -moz-box-shadow: 1px 1px 1px #aaa;
-  -webkit-box-shadow: 1px 1px 1px #aaa;
-  box-shadow: 1px 1px 1px #aaa;
-}
-
-#facebook-icon  {background: url(../images/sprite.png) -6px -78px}
-#twitter-icon   {background: url(../images/sprite.png) -6px -119px}
-#rss-icon       {background: url(../images/sprite.png) -6px -160px}
-#email-icon     {background: url(../images/sprite.png) -6px -201px}
-#stumble-icon   {background: url(../images/sprite.png) -6px -242px}
-#delicious-icon {background: url(../images/sprite.png) -6px -283px}
-#digg-icon      {background: url(../images/sprite.png) -6px -324px}
-#feedback-icon {background: url(../images/sprite.png) -6px -365px}
-
-#action-stub1 {background: url(../images/sprite.png) -6px -283px}
-#action-stub2 {background: url(../images/sprite.png) -6px -283px}
-#action-stub3 {background: url(../images/sprite.png) -6px -283px}
-
-
-.beta {
-  left: -30px;
-  height: 96px;
-  width: 96px;
-  top: -20px;
-  position: absolute;
-  z-index: 456;
+.maring-top {
+  margin-top: 15px;
 }

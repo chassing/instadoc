@@ -103,7 +103,7 @@ TEMPLATE_LOADERS = (
   'django.template.loaders.eggs.Loader',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
+TEMPLATE_CONTEXT_PROCESSORS = [
   "django.contrib.auth.context_processors.auth",
   "django.core.context_processors.debug",
   "django.core.context_processors.i18n",
@@ -111,23 +111,23 @@ TEMPLATE_CONTEXT_PROCESSORS = (
   "django.core.context_processors.static",
   "django.contrib.messages.context_processors.messages",
   "%s.main.context_processors.django_conf" % PROJECT_NAME
-)
+]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
   'django.middleware.common.CommonMiddleware',
   'django.contrib.sessions.middleware.SessionMiddleware',
   'django.middleware.csrf.CsrfViewMiddleware',
   'django.contrib.auth.middleware.AuthenticationMiddleware',
   'django.contrib.messages.middleware.MessageMiddleware',
-)
+]
 
 ROOT_URLCONF = '%s.urls' % PROJECT_NAME
 
-TEMPLATE_DIRS = (
+TEMPLATE_DIRS = [
   '%s/templates' % DIRPATH,
-)
+]
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
   # std django apps
   'django.contrib.auth',
   'django.contrib.contenttypes',
@@ -150,7 +150,7 @@ INSTALLED_APPS = (
 
   # my apps
   'main',
-)
+]
 
 AUTHENTICATION_BACKENDS = [
   "django.contrib.auth.backends.ModelBackend",
@@ -214,7 +214,7 @@ LOGGING = {
 #
 APP_NAME = "Instadoc"
 APP_NAME_LONG = "Insta Doc"
-APP_VERSION = "1.0"
+APP_VERSION = "0.1"
 COPYRIGHT_YEAR = "2012"
 
 ADMIN_USERS = ["chris", ]

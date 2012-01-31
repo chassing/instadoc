@@ -14,17 +14,6 @@ LOGIN_REDIRECT_URL = "%s/" % APP_ROOT_URL
 
 PUBLIC_VERSION = True
 
-DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME': '%s' % PROJECT_NAME.lower(),
-    'USER': '%s' % PROJECT_NAME.lower(),
-    'PASSWORD': 'foobar',
-    'HOST': '127.0.0.1',
-    'PORT': '',
-  },
-}
-
 
 import logging
 logging.getLogger().setLevel(logging.INFO)
