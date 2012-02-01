@@ -4,17 +4,6 @@ from settings import *
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-APP_ROOT_URL = ""
-MEDIA_URL = '%s/media/' % APP_ROOT_URL
-STATIC_URL = '%s/static' % APP_ROOT_URL
-ADMIN_MEDIA_PREFIX = '%s/static/admin/' % APP_ROOT_URL
-LOGIN_URL = "%s/login/" % APP_ROOT_URL
-LOGOUT_URL = "%s/logout/" % APP_ROOT_URL
-LOGIN_REDIRECT_URL = "%s/" % APP_ROOT_URL
-
-PUBLIC_VERSION = True
-
-
 import logging
 logging.getLogger().setLevel(logging.INFO)
 
