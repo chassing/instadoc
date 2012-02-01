@@ -28,7 +28,7 @@
   <ul class="nav">
     {% for category in categories %}
       <li {% if category == selected_category %} class="active" {% endif %}>
-        <a href="{% url 'main:category' pk=category.pk %}">{{ category.item|title }}</a>
+        <a href="{% url 'main:category' category=category.item %}">{{ category.item|title }}</a>
       </li>
     {% endfor %}
   </ul>
