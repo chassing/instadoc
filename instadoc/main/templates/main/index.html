@@ -25,10 +25,10 @@
 
 {% block header %}
   {{ block.super }}
-  <ul>
+  <ul class="nav">
     {% for category in categories %}
       <li {% if category == selected_category %} class="active" {% endif %}>
-        <a href="{% url 'main:category' pk=category.pk %}">{{ category.item|title }}</a>
+        <a href="{% url 'main:category' category=category.item %}">{{ category.item|title }}</a>
       </li>
     {% endfor %}
   </ul>
@@ -36,7 +36,10 @@
 
 {% block main %}
   <div class="row">
-    <div id='sidebar' class="well span4"></div>
-    <div id='detail' class="span10"></div>
+    <div id='sidebar' class="well span3"></div>
+    <div id='detail' class="span8" style="margin-top: 10px">
+      <span class="alert alert-info">Use the search bar and click the item for details!</span>
+    </div>
   </div>
 {% endblock %}
+

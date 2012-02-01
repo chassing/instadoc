@@ -12,11 +12,11 @@ from models import Category
 class Index(TemplateView):
   template_name = 'main/index.html'
 
-  def get(self, request, pk=None):
+  def get(self, request, category=None):
     tmpl = RequestContext(request)
     tmpl["categories"] = Category.objects.all()
-    tmpl["selected_category"] = get_object_or_404(Category, pk=1)
-    if pk:
-      tmpl["selected_category"] = get_object_or_404(Category, pk=pk)
+    tmpl["selected_category"] = get_object_or_404(Category, item='python')
+    if category:
+      tmpl["selected_category"] = get_object_or_404(Category, item=category.lower())
     return self.render_to_response(tmpl)
 

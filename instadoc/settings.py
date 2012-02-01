@@ -29,8 +29,6 @@ DATABASES = {
   }
 }
 
-APP_ROOT_URL = ""
-
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -61,7 +59,7 @@ MEDIA_ROOT = '%s/media/' % DIRPATH
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '%s/media/' % APP_ROOT_URL
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -71,7 +69,7 @@ STATIC_ROOT = '%s/static/' % DIRPATH
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '%s/static' % APP_ROOT_URL
+STATIC_URL = '/static'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
@@ -94,7 +92,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'PLEASE_CHANGE_ME_n2e0tw#-iin92%ne9p@+_8n&ic+fbds0ez&gynymo%p5-1!_-v'
+SECRET_KEY = 'adfadfa_n2e0tw#-iin92%ne9p@+_8n&ic+jfjzv&gynymo%p5-1!_-v'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -132,11 +130,7 @@ INSTALLED_APPS = [
   'django.contrib.auth',
   'django.contrib.contenttypes',
   'django.contrib.sessions',
-  'django.contrib.sites',
-  'django.contrib.messages',
   'django.contrib.staticfiles',
-  'django.contrib.webdesign',
-  'django.contrib.humanize',
   'django.contrib.admin',
 
   # restful api framework
@@ -214,12 +208,9 @@ LOGGING = {
 #
 APP_NAME = "Instadoc"
 APP_NAME_LONG = "Insta Doc"
-APP_VERSION = "0.1"
+APP_VERSION = "0.2"
 COPYRIGHT_YEAR = "2012"
 
-ADMIN_USERS = ["chris", ]
-
-PUBLIC_VERSION = False
 
 if 'tastypie' in INSTALLED_APPS:
   API_LIMIT_PER_PAGE = 0

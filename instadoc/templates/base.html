@@ -1,7 +1,7 @@
 {% load url from future %}
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>
@@ -9,9 +9,8 @@
         {{ APP_NAME }}
       {% endblock %}
     </title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="keywords" content="instadoc, python, jquery, css, html, javascript, documentation" />
+    <meta name="description" content="get python/css/html ... documentation really fast" />
 
     {% block js %}
       <script type="text/javascript" src="{{ STATIC_URL }}/js/libs/jquery-1.7.1.min.js"></script>
@@ -28,23 +27,38 @@
 
     <link rel="shortcut icon" href="{{ STATIC_URL }}/images/favicon.ico" />
 
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-18622266-3']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
     {% block extrahead %}{% endblock %}
   </head>
 
   <body>
     <!-- Header -->
-    <div class="topbar">
-      <div class="topbar-inner">
-        <div class="container-fluid">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
           {% block header %}
             <a class="brand" href="{% url 'main:index' %}">{{ APP_NAME }} <span class="small-text">{{ APP_VERSION }}</span></a>
           {% endblock %}
         </div>
       </div>
+      <a href="https://github.com/chassing/instadoc" target="_blank">
+        <img class="fork-me-at-github" src="{{ STATIC_URL }}/images/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+      </a>
     </div>
 
     <!-- Container -->
-    <div class="{% block container_class %}container-fluid{% endblock %}">
+    <div class="{% block container_class %}container{% endblock %}">
       {% block main %}{% endblock %}
     </div>
 
