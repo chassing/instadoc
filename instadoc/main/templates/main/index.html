@@ -6,6 +6,19 @@
   <script type="text/javascript">
     API_URL = "{% url 'api_dispatch_list' api_name='v1' resource_name='documentation' %}";
     API_FILTER = "category__id={{ selected_category.id }}";
+
+    var disqus_shortname = 'instadoc';
+
+    {% if DEBUG %}
+      var disqus_developer = 1;
+    {% endif %}
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
   </script>
   <script type="text/javascript" src="{{ STATIC_URL }}/js/instadoc.js"></script>
 
@@ -39,6 +52,7 @@
     <div id='sidebar' class="well span3"></div>
     <div id='detail' class="span8" style="margin-top: 10px">
       <span class="alert alert-info">Use the search bar and click the item for details!</span>
+      <div id="disqus_thread"></div>
     </div>
   </div>
 {% endblock %}
