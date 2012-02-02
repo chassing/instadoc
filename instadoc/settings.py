@@ -170,10 +170,6 @@ LOGGING = {
   'filters': {
   },
   'handlers': {
-    'mail_admins': {
-      'level': 'ERROR',
-      'class': 'django.utils.log.AdminEmailHandler'
-    },
     'console': {
       'class': 'logging.StreamHandler',
       'formatter': 'std',
@@ -187,11 +183,6 @@ LOGGING = {
     },
   },
   'loggers': {
-    'django.request': {
-      'handlers': ['mail_admins'],
-      'level': 'ERROR',
-      'propagate': False,
-    },
     'django.request.tastypie': {
       'handlers': ['console'],
       'level': 'DEBUG',

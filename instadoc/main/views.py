@@ -1,4 +1,8 @@
 
+import logging
+log = logging.getLogger("main.views")
+
+
 from django.template import RequestContext
 #from django.contrib.auth.decorators import login_required
 #from django.utils.decorators import method_decorator
