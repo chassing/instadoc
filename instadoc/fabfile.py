@@ -11,7 +11,7 @@ _setup(
       environment='public',
       os=CONST.OS.DEBIAN,
       hosts=["aegis.ca-net.org"],
-      server_alias="instadoc.ca-net.org",
+      server_name="instadoc.ca-net.org",
       linux_user='instadoc',
       linux_group='instadoc',
       linux_user_ssh_keys=[
