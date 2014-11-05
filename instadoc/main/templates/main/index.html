@@ -1,45 +1,39 @@
 {% extends "base.html" %}
-{% load url from future %}
-{% load include_raw %}
+{% load jstemplate %}
 
 {% block extrahead %}
-  <script type="text/javascript">
-    API_URL = "{% url 'api_dispatch_list' api_name='v1' resource_name='documentation' %}";
-    API_FILTER = "category__id={{ selected_category.id }}";
-  </script>
-  <script type="text/javascript" src="{{ STATIC_URL }}/js/instadoc.js"></script>
-
-  <script type="text/html" id="list_item_template">
-    {% include_raw "main/list_item.mustache" %}
-  </script>
-
-  <script type="text/html" id="list_template">
-    {% include_raw "main/list.mustache" %}
-  </script>
-
-  <script type="text/html" id="detail_template">
-    {% include_raw "main/detail.mustache" %}
-  </script>
-
+    <script type="text/javascript">
+        API_URL = "{% url 'api_dispatch_list' api_name='v1' resource_name='documentation' %}";
+        CATEGORY_ID = "{{ selected_category.id }}";
+    </script>
 {% endblock %}
 
 {% block header %}
-  {{ block.super }}
-  <ul class="nav">
-    {% for category in categories %}
-      <li {% if category == selected_category %} class="active" {% endif %}>
-        <a href="{% url 'main:category' category=category.item %}">{{ category.item|title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
+    {{ block.super }}
+    <ul class="nav">
+        {% for category in categories %}
+            <li {% if category == selected_category %} class="active" {% endif %}>
+                <a href="{% url 'main:category' category=category.item %}">{{ category.item|title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
 
 {% block main %}
-  <div class="row">
-    <div id='sidebar' class="well span3"></div>
-    <div id='detail' class="span8" style="margin-top: 10px">
-      <span class="alert alert-info">Use the search bar and click the item for details!</span>
+    <div class="row">
+        {% verbatim %}
+            <div id='sidebar' class="well span3">
+                <input ng-model="search_item" placeholder="search ..." autofocus="true">
+
+                <p ng-repeat="documentation in documentations | filter:search_item" class="permalink" ng-click="load_documentation(documentation.id)">
+                    {{ documentation.item }}
+                </p>
+            </div>
+
+            <div id='detail' class="span8" style="margin-top: 10px" ng-bind-html="item_doc.html">
+
+            </div>
+        {% endverbatim %}
     </div>
-  </div>
 {% endblock %}
 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="instadocApp">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title> InstaDoc </title>
+        <meta name="keywords" content="instadoc, python, jquery, css, html, javascript, documentation" />
+        <meta name="description" content="get python/css/html ... documentation really fast" />
+
+        {% block css %}
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/bootstrap.css" />
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/base.css" />
+        {% endblock %}
+
+        <link rel="shortcut icon" href="{{ STATIC_URL }}/images/favicon.ico" />
+        {% block extrahead %}{% endblock %}
+    </head>
+
+    <body ng-controller="instadocAppCtrl" class="ng-cloak">
+        <!-- Header -->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    {% block header %}
+                        <a class="brand" href="{% url 'main:index' %}">InstaDoc <span class="small-text">0.1dev</span></a>
+                    {% endblock %}
+                </div>
+            </div>
+            <a href="https://github.com/chassing/instadoc" target="_blank">
+                <img class="fork-me-at-github" src="{{ STATIC_URL }}/images/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+            </a>
+        </div>
+
+        <!-- Container -->
+        <div class="{% block container_class %}container{% endblock %}">
+            {% block main %}{% endblock %}
+        </div>
+
+        <!-- Le javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        {% block js %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.js"></script>
+            <script src="{{ STATIC_URL }}/js/tasty-resource.js"></script>
+            <script src="{{ STATIC_URL }}/js/instadoc.js"></script>
+        {% endblock %}
+    </body>
+</html>
+
