@@ -1,2 +1,4 @@
 log/instadoc.log
 db/db.sqlite
+elasticsearch
+reminder.txt
