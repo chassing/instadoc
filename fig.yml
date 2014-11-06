@@ -2,13 +2,8 @@ db:
   image: postgres
   ports:
     - "5432:5432"
-search:
-  image: dockerfile/elasticsearch
-  volumes:
-    - elasticsearch/:/data
-  ports:
-    - "9200:9200"
-    - "9300:9300"
+redis:
+  image: redis
 web:
   build: .
   command: python manage.py runserver 0.0.0.0:8000
@@ -18,4 +13,4 @@ web:
     - "8000:8000"
   links:
     - db
-    - search
+    - redis

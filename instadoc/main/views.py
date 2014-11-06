@@ -3,6 +3,9 @@ from django.template import RequestContext
 from django.views.generic.base import TemplateView
 from django.shortcuts import get_object_or_404
 
+from redis import Redis
+redis = Redis(host='redis', port=6379)
+
 
 from models import Category
 
@@ -16,4 +19,7 @@ class Index(TemplateView):
         tmpl["selected_category"] = get_object_or_404(Category, item='python')
         if category:
             tmpl["selected_category"] = get_object_or_404(Category, item=category.lower())
+
+        # hits
+        tmpl["counter"] = redis.incr('hits_per_category_{}'.format(tmpl["selected_category"].pk))
         return self.render_to_response(tmpl)
