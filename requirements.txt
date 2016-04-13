@@ -1,7 +1,7 @@
 Django==1.9.5
 django-tastypie==0.13.3
 elasticsearch==2.3.0
-python-dateutil==2.2
+python-dateutil==2.5
 python-mimeparse==0.1.4
 six==1.8.0
 urllib3==1.9.1
