@@ -1,5 +1,5 @@
 Django==1.9.5
-django-tastypie==0.12.1
+django-tastypie==0.13.3
 elasticsearch==1.2.0
 python-dateutil==2.2
 python-mimeparse==0.1.4
