@@ -1,4 +1,4 @@
-Django==1.10.4
+Django==1.10.5
 django-tastypie==0.12.1
 elasticsearch==1.2.0
 python-dateutil==2.2
